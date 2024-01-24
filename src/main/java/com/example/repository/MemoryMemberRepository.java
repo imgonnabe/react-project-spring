@@ -6,14 +6,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import org.springframework.stereotype.Repository;
-
 import com.example.domain.Member;
 
 public class MemoryMemberRepository implements MemberRepository {
 	
-	private static Map<Long, Member> store = new HashMap<Long, Member>();// ½Ç¹«¿¡¼­´Â ConcurrentHashMap(µ¿½Ã¼º ¹®Á¦ ÇØ°á)
-	private static long sequence = 0L;// 0Àº ¹¬½ÃÀûÀ¸·Î int°ªÀ» ÀÇ¹Ì, 0LÀº longÇü, ½Ç¹«¿¡¼­´Â AtomicLong(µ¿½Ã¼º ¹®Á¦ ÇØ°á), key°ª »ı¼º
+	private static Map<Long, Member> store = new HashMap<Long, Member>();// ì‹¤ë¬´ì—ì„œëŠ” ConcurrentHashMap(ë™ì‹œì„± ë¬¸ì œ í•´ê²°)
+	private static long sequence = 0L;// 0ì€ ë¬µì‹œì ìœ¼ë¡œ intê°’ì„ ì˜ë¯¸, 0Lì€ longí˜•, ì‹¤ë¬´ì—ì„œëŠ” AtomicLong(ë™ì‹œì„± ë¬¸ì œ í•´ê²°), keyê°’ ìƒì„±
 	
 	@Override
 	public Member save(Member member) {
@@ -35,10 +33,10 @@ public class MemoryMemberRepository implements MemberRepository {
 		return store.values().stream()
 				.filter(member -> member.getName().equals(name))
 				.findAny();
-		// store.values(): store ¸Ê¿¡ ÀúÀåµÈ ¸ğµç Member °´Ã¼ÀÇ ÄÃ·º¼ÇÀ» °¡Á®¿È
-		// stream: ½ºÆ®¸²À» »ı¼º
-		// filter: ÁÖ¾îÁø ÀÌ¸§°ú ÀÏÄ¡ÇÏ´Â ¸â¹ö¸¦ Ã£À½
-		// findAny: Ã£Àº ¸â¹ö Áß ¾Æ¹« °ÍÀÌ³ª ÇÏ³ª¸¦ ¼±ÅÃ, ÀÏÄ¡ÇÏ´Â ¸â¹ö°¡ ¾ø´Ù¸é OptimalÀ» °¨½Ñ °á°ú¸¦ ¹İÈ¯
+		// store.values(): store ë§µì— ì €ì¥ëœ ëª¨ë“  Member ê°ì²´ì˜ ì»¬ë ‰ì…˜ì„ ê°€ì ¸ì˜´
+		// stream: ìŠ¤íŠ¸ë¦¼ì„ ìƒì„±
+		// filter: ì£¼ì–´ì§„ ì´ë¦„ê³¼ ì¼ì¹˜í•˜ëŠ” ë©¤ë²„ë¥¼ ì°¾ìŒ
+		// findAny: ì°¾ì€ ë©¤ë²„ ì¤‘ ì•„ë¬´ ê²ƒì´ë‚˜ í•˜ë‚˜ë¥¼ ì„ íƒ, ì¼ì¹˜í•˜ëŠ” ë©¤ë²„ê°€ ì—†ë‹¤ë©´ Optimalì„ ê°ì‹¼ ê²°ê³¼ë¥¼ ë°˜í™˜
 	}
 
 	@Override

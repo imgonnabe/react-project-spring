@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.example.domain.Member;
 import com.example.repository.MemberRepository;
@@ -19,24 +18,24 @@ public class MemberService {
 	}
 	
 	/**
-	 *  È¸¿ø°¡ÀÔ
+	 *  íšŒì›ê°€ì…
 	 */
-	public Long join(Member member) {// Optional·Î ¹Ù·Î ¹İÈ¯ÇÏ´Â °Í ÁÁÁö ¾ÊÀ½
-		validateDuplicateMember(member);// Áßº¹È¸¿ø °ËÁõ
+	public Long join(Member member) {// Optionalë¡œ ë°”ë¡œ ë°˜í™˜í•˜ëŠ” ê²ƒ ì¢‹ì§€ ì•ŠìŒ
+		validateDuplicateMember(member);// ì¤‘ë³µíšŒì› ê²€ì¦
 		memberRepository.save(member);
 		return member.getId();
 	}
 
-	private void validateDuplicateMember(Member member) {// ¸Ş¼­µå ÃßÃâ: alt + shift + M
+	private void validateDuplicateMember(Member member) {// ë©”ì„œë“œ ì¶”ì¶œ: alt + shift + M
 		// Optional<Member> result = memberRepository.findByName(member.getName());
 		memberRepository.findByName(member.getName())
-			.ifPresent(m -> {// Optional·Î °¨½Õ±â ¶§¹®¿¡ ifPresent, ±âÁ¸¿¡´Â if nullÀÌ ¾Æ´Ï¸é
-				throw new IllegalStateException("ÀÌ¹Ì Á¸ÀçÇÏ´Â È¸¿øÀÔ´Ï´Ù.");
+			.ifPresent(m -> {// Optionalë¡œ ê°ìŒŒê¸° ë•Œë¬¸ì— ifPresent, ê¸°ì¡´ì—ëŠ” if nullì´ ì•„ë‹ˆë©´
+				throw new IllegalStateException("ì´ë¯¸ ì¡´ì¬í•˜ëŠ” íšŒì›ì…ë‹ˆë‹¤.");
 			});
 	}
 	
 	/**
-	 *	ÀüÃ¼ È¸¿ø Á¶È¸ 
+	 *	ì „ì²´ íšŒì› ì¡°íšŒ 
 	 */
 	public List<Member> findMembers(){
 		return memberRepository.findAll();

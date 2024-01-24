@@ -1,7 +1,5 @@
 package com.example.domain;
 
-import lombok.Data;
-
 public class Member {
 	
 	private Long id;

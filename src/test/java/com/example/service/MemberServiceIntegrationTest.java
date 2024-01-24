@@ -2,21 +2,25 @@ package com.example.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.domain.Member;
-import com.example.repository.MemoryMemberRepository;
+import com.example.repository.MemberRepository;
 
-class MemberServiceTest {// 단위 테스트
+@SpringBootTest// 스프링 컨테이너와 테스트를 함께 실행, 통합 테스트
+@Transactional// 트랜잭션 먼저 실행 -> 테스트 -> 롤백
+class MemberServiceIntegrationTest {
 	
+	@Autowired
 	MemberService memberService;
-	MemoryMemberRepository memberRepository;
+	@Autowired
+	MemberRepository memberRepository;
 	
-	@BeforeEach
+	/*@BeforeEach
 	public void beforeEach() {
 		memberRepository = new MemoryMemberRepository();
 		memberService = new MemberService(memberRepository);
@@ -25,10 +29,10 @@ class MemberServiceTest {// 단위 테스트
 	@AfterEach// 메서드가 실행될 때 마다
 	public void afterEach() {
 		memberRepository.clearStore();
-	}
+	}*/
 
 	@Test
-	void testJoin() {
+	void testJoin() { 
 		// given(준비)
 		Member member = new Member();
 		member.setName("spring");
@@ -62,16 +66,6 @@ class MemberServiceTest {// 단위 테스트
 		}*/
 		
 		// then
-	}
-
-	@Test
-	void testFindMembers() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testFindOne() {
-		fail("Not yet implemented");
 	}
 
 }

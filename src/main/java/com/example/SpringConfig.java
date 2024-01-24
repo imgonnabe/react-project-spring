@@ -8,7 +8,7 @@ import com.example.repository.MemoryMemberRepository;
 import com.example.service.MemberService;
 
 @Configuration
-public class SpringConfig {// ÄÄÆ÷³ÍÆ® ½ºÄµ ¸»°í Á÷Á¢ µî·Ï
+public class SpringConfig {// ì»´í¬ë„ŒíŠ¸ ìŠ¤ìº” ë§ê³  ì§ì ‘ ë“±ë¡
 	
 	@Bean
 	public MemberService memberService() {

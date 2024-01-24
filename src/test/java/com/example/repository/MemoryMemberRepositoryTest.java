@@ -9,11 +9,11 @@ import org.junit.jupiter.api.Test;
 
 import com.example.domain.Member;
 
-class MemoryMemberRepositoryTest {// Å×½ºÆ®´Â ¼ø¼­¿Í °ü°è¾øÀÌ, ÀÇÁ¸°ü°è ¾øÀÌ ¼³°èµÇ¾î¾ß ÇÔ
+class MemoryMemberRepositoryTest {// í…ŒìŠ¤íŠ¸ëŠ” ìˆœì„œì™€ ê´€ê³„ì—†ì´, ì˜ì¡´ê´€ê³„ ì—†ì´ ì„¤ê³„ë˜ì–´ì•¼ í•¨
 	
 	MemoryMemberRepository repository = new MemoryMemberRepository();
 	
-	@AfterEach// ¸Ş¼­µå°¡ ³¡³¯ ¶§¸¶´Ù ½ÇÇà
+	@AfterEach// ë©”ì„œë“œê°€ ëë‚  ë•Œë§ˆë‹¤ ì‹¤í–‰
 	public void afterEach() {
 		repository.clearStore();
 	}
@@ -55,7 +55,7 @@ class MemoryMemberRepositoryTest {// Å×½ºÆ®´Â ¼ø¼­¿Í °ü°è¾øÀÌ, ÀÇÁ¸°ü°è ¾øÀÌ ¼³°
 		
 		List<Member> result = repository.findAll();
 		assertThat(result.size()).isEqualTo(2);
-		// findAll() -> findByName(): findAll()¿¡¼­ ÀúÀåÇÑ spring1ÀÌ ³ª¿Í¼­ ¿¡·¯
-		// Å×½ºÆ® ³¡³ª¸é µ¥ÀÌÅÍ Å¬¸®¾îÇØ¾ßÇÔ
+		// findAll() -> findByName(): findAll()ì—ì„œ ì €ì¥í•œ spring1ì´ ë‚˜ì™€ì„œ ì—ëŸ¬
+		// í…ŒìŠ¤íŠ¸ ëë‚˜ë©´ ë°ì´í„° í´ë¦¬ì–´í•´ì•¼í•¨
 	}
 }
